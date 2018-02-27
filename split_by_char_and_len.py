@@ -8,13 +8,13 @@ def split_by_char_and_length(s, m=20, pattern=" "):
             return l
         else:
             g = s[:m]
-            r = g[::-1].find(" ")
-            if r == -1:
+            idx = g[::-1].find(" ")
+            if idx == -1:
                 l.append(s[:m])
                 return split_by_char_and_length_rec(s[m+len(pattern):], m=m, pattern=pattern, l=l)
             else:
                 l.append(s[:m-r-len(pattern)])
-                return split_by_char_and_length_rec(s[m-r:], m=m, pattern=pattern, l=l)
+                return split_by_char_and_length_rec(s[m-idx:], m=m, pattern=pattern, l=l)
     l = []    
     return split_by_char_and_length_rec(s=s, m=m, pattern=pattern, l=l)
 
@@ -24,7 +24,7 @@ class Splitter(object):
         self.length = length
         self.pattern = pattern
         self.list = []
-        self.combined = ''
+        self.combined = None
         
     def to_list(self):
         self.list = split_by_char_and_length(self.string, self.length, self.pattern)
