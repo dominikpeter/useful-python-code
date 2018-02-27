@@ -1,6 +1,3 @@
-
-import os
-
 def split_by_char_and_length(s, m=20, pattern=" "):
     def split_rec(s, m=20, pattern=" ", l=[]):
         if len(s) < m:
