@@ -2,8 +2,6 @@
 import os
 import re
 
-s = 'Plattentrennmaschine VIP 260 230 V 0.65 kW Schnitttiefe 40 mm mit Diamanttrennscheibe 200 mm und Untergestell'
-
 def split_by_char_and_length(s, m=20, pattern=" "):
     
     def split_by_char_and_length_rec(s, m=20, pattern=" ", l=[]):
@@ -19,10 +17,23 @@ def split_by_char_and_length(s, m=20, pattern=" "):
             else:
                 l.append(s[:m-r-len(pattern)])
                 return split_by_char_and_length_rec(s[m-r:], m=m, pattern=pattern, l=l)
-    l = []
-    
+    l = []    
     return split_by_char_and_length_rec(s=s, m=m, pattern=pattern, l=l)
 
-" || ".join(split_by_char_and_length(s, m=40))
-
-[len(i) for i in split_by_char_and_length(s, m=30)]
+class Splitter(object):
+    def __init__(self, string, length, pattern):
+        self.string = string
+        self.length = length
+        self.pattern = pattern
+        self.list = []
+        self.combined = ''
+        
+    def to_list(self):
+        self.list = split_by_char_and_length(self.string, self.length, self.pattern)
+        return self.list
+    
+    def join(self, pattern):
+        if not self.list:
+            self.to_list()
+        self.combined = pattern.join(self.list)
+        return self.combined
