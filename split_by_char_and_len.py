@@ -5,7 +5,7 @@ def split_by_char_and_length(s, m=20, pattern=" "):
             return l
         else:
             g = s[:m]
-            r = g[::-1].find(" ")
+            r = g[::-1].find(pattern)
             if r == -1:
                 l.append(s[:m])
                 return split_by_char_and_length_rec(s[m+len(pattern):], m=m, pattern=pattern, l=l)
