@@ -1,6 +1,6 @@
 def split_by_char_and_len(s, m=20, pattern=" "):
     def split_by_char_and_len_rec(s, m=20, pattern=" ", l=[]):
-        if len(s) < m:
+        if len(s) < m: #piece is shorter than wished length
             assert(s <= m)
             l.append(s)
             return l
