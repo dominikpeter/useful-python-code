@@ -1,20 +1,20 @@
 def split_by_char_and_len(s, m=20, pattern=" "):
     def split_by_char_and_len_rec(s, m=20, pattern=" ", l=[]):
         if len(s) < m: #piece is shorter than wished length
-            assert(s <= m)
+            assert(len(s) <= m)
             l.append(s)
             return l
         else:
             g = s[:m]
             r = g[::-1].find(pattern)
             if r == -1:
-                string_to_append = s[:m])
-                assert(string_to_append <= m)
+                string_to_append = s[:m]
+                assert(len(string_to_append) <= m)
                 l.append(string_to_append)
                 return split_by_char_and_len_rec(s[m+len(pattern):], m=m, pattern=pattern, l=l)
             else:
-                string_to_append = s[:m-r-len(pattern)])
-                assert(string_to_append <= m)
+                string_to_append = s[:m-r-len(pattern)]
+                assert(len(string_to_append) <= m)
                 l.append(string_to_append)
                 return split_by_char_and_len_rec(s[m-r:], m=m, pattern=pattern, l=l)
     l = []
