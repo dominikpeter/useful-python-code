@@ -55,9 +55,6 @@ if __name__ == '__main__':
     print("Total Price is {}".format(
         calc_price(d, m)))
 
-    import numpy as np
-
-
     p, q = get_best(d, 950, 1300)
 
     print("Best price per piece = {} with {} quantity".format(p, q))
